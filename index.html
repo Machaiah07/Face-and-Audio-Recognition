@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Face & Audio Recognition</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+      text-align: center;
+      padding: 50px;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 1.5rem;
+      color: #1f2937;
+    }
+
+    form {
+      margin: 20px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      width: 350px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"], button {
+      background-color: #6366f1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover, button:hover {
+      background-color: #4f46e5;
+    }
+
+    .footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .result {
+      margin-top: 40px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>💡 Face & Audio Identity Recognition</h1>
+
+  <h2>📤 Upload Image</h2>
+  <form action="/predict_image" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required><br>
+    <input type="submit" value="Predict Image">
+  </form>
+
+  <h2>🎙️ Upload Audio</h2>
+  <form action="/predict_audio" method="post" enctype="multipart/form-data">
+    <input type="file" name="audio" accept="audio/*" required><br>
+    <input type="submit" value="Predict Audio">
+  </form>
+
+  <h2>📸 Capture from Webcam (Desktop Only)</h2>
+  <form action="/capture_webcam" method="get">
+    <button type="submit">Open Webcam & Predict</button>
+  </form>
+
+  {% if prediction %}
+    <div class="result">
+      <h2>🧠 Prediction Result</h2>
+      <p>✅ {{ prediction }}</p>
+    </div>
+  {% endif %}
+
+  {% if image_url %}
+    <h3>🖼️ Image Preview</h3>
+    <img src="{{ image_url }}" alt="Uploaded Image">
+  {% endif %}
+
+  <div class="footer">
+    Made with ❤️ by Divin<br>
+    <span class="icon">🚀 AI + Flask Web App</span>
+  </div>
+</body>
+</html>

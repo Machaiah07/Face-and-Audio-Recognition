@@ -1,0 +1,23 @@
+flask
+opencv-python
+numpy
+pillow
+werkzeug
+facenet-pytorch
+insightface
+speechbrain
+librosa
+torchaudio
+torch
+scikit-learn
+torch
+torchvision
+torchaudio
+facenet-pytorch
+insightface
+opencv-python-headless
+librosa
+pillow
+scikit-learn
+onnxruntime  # ✅ CPU version works on macOS
+git+https://github.com/speechbrain/speechbrain.git

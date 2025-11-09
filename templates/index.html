@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>⚡ Face & Audio Recognition</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #1e1e1e, #0d0d0d);
+      color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+      padding-top: 50px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #00ffd5;
+      text-shadow: 0 0 15px #00ffd5, 0 0 30px #00ffd5;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 25px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 15px rgba(0,255,213,0.1);
+      width: 340px;
+      transition: transform 0.3s ease;
+    }
+
+    form:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(0,255,213,0.25);
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: block;
+      color: #ccc;
+    }
+
+    input[type="file"] {
+      background-color: #222;
+      color: #eee;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #00ffd5, #0fd);
+      color: #0d0d0d;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #0fd, #00ffd5);
+      box-shadow: 0 0 10px #0fd, 0 0 30px #00ffd5;
+      color: black;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,255,213,0.5);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #00ffd5;
+      text-shadow: 0 0 8px #00ffd5;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    ::selection {
+      background: #00ffd5;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>⚡ Face & Audio Recognition</h1>
+
+  <div class="container">
+    <form action="/predict_image" method="POST" enctype="multipart/form-data">
+      <label for="image">Upload Image</label>
+      <input type="file" name="image" required>
+      <button type="submit">Predict Image</button>
+    </form>
+
+    <form action="/predict_audio" method="POST" enctype="multipart/form-data">
+      <label for="audio">Upload Audio</label>
+      <input type="file" name="audio" required>
+      <button type="submit">Predict Audio</button>
+    </form>
+
+    <form action="/capture_webcam" method="GET">
+      <button>📸 Capture from Webcam</button>
+    </form>
+
+    {% if image_url %}
+      <img src="{{ image_url }}" alt="Captured Image">
+    {% endif %}
+
+    {% if prediction %}
+      <div class="result">✅ {{ prediction }}</div>
+    {% endif %}
+  </div>
+
+  <div class="footer">Designed with ❤️ by Div</div>
+
+</body>
+</html>
